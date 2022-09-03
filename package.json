@@ -18,6 +18,28 @@
 	"activationEvents": [
 		"*"
 	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "eml",
+				"aliases": [
+					"ESSA EML",
+					"eml"
+				],
+				"extensions": [
+					".eml"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "eml",
+				"scopeName": "source.eml",
+				"path": "./syntaxes/eml.tmLanguage.json"
+			}
+		]
+	},
 	"main": "./out/extension.js",
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

@@ -1,32 +1,209 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"scopeName": "source.eml",
 	"name": "EML",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#objects"
 		},
 		{
-			"include": "#strings"
+			"include": "#comments"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.eml",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"objects": {
+			"patterns": [
+				{
+					"name": "meta.type.object.eml",
+					"begin": "(@\\p{L}[\\p{L}0-9_$]*)((?:::\\p{L}[\\p{L}0-9_$]*)*) *([\\p{L}0-9_]*) *\\s*(\\{)?",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.type.eml"
+						},
+						"2": {
+							"patterns": [
+								{
+									"comment": "FIXME: Direct whileCaptures don't seem to work",
+									"begin": "",
+									"while": "(::)(\\p{L}[\\p{L}0-9_$]*)",
+									"patterns": [
+										{
+											"match": "(::)(\\p{L}[\\p{L}0-9_$]*)",
+											"captures": {
+												"1": {
+													"name": "punctuation.separator.namespace.eml"
+												},
+												"2": {
+													"name": "entity.name.type.eml"
+												}
+											}
+										}
+									]
+								}
+							]
+						},
+						"3": {
+							"name": "entity.name.function"
+						},
+						"4": {
+							"name": "punctuation.braces.begin.eml"
+						}
+					},
+					"end": "(\\})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.braces.end.eml"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#attributes"
+						},
+						{
+							"include": "#objects"
+						},
+						{
+							"include": "#class-definitions"
+						},
+						{
+							"include": "#comments"
+						}
+					]
+				}
+			]
+		},
+		"attributes": {
+			"name": "meta.attribute.eml",
+			"begin": "(?!<@)(\\p{L}[\\p{L}0-9_$]*)\\s*(:)",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "variable.other.attribute.eml"
+				},
+				"2": {
+					"name": "punctuation.attribute.eml"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#values"
+				}
+			]
+		},
+		"class-definitions": {
+			"name": "meta.type.class-definition.eml",
+			"begin": "(define) +(\\p{L}[\\p{L}0-9_$]*) +: +",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control"
+				},
+				"2": {
+					"name": "entity.name.class"
+				}
+			},
+			"end": "$",
+			"patterns": [
+				{
+					"include": "#objects"
+				}
+			]
+		},
+		"values": {
+			"patterns": [
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#numbers"
+				},
+				{
+					"include": "#number-arrays"
+				},
+				{
+					"include": "#booleans"
+				},
+				{
+					"include": "#resource-ids"
+				},
+				{
+					"include": "#objects"
+				}
+			]
+		},
+		"numbers": {
+			"name": "constant.numeric.decimal.eml",
+			"match": "[0-9]+(\\.[0-9]+([eE][+-]?[0-9]+)?)?(%|px)?"
+		},
+		"number-arrays": {
+			"begin": "(\\[)",
+			"end": "(\\])",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.list.begin.eml"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.list.end.eml"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#numbers"
+				},
+				{
+					"match": ",",
+					"name": "punctuation.comma.eml"
+				}
+			]
+		},
+		"booleans": {
+			"name": "constant.language.$1.eml",
+			"match": "\\b(true|false)\\b"
 		},
 		"strings": {
 			"name": "string.quoted.double.eml",
-			"begin": "\"",
-			"end": "\"",
+			"begin": "(\")",
+			"end": "(\")",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.string.begin.eml"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.string.end.eml"
+				}
+			},
 			"patterns": [
 				{
 					"name": "constant.character.escape.eml",
 					"match": "\\\\."
 				}
 			]
+		},
+		"resource-ids": {
+			"begin": "(asset|external)\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#strings"
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.line.double-slash.eml",
+			"match": "(//).*",
+			"captures": {
+				"1": {
+					"name": "punctuation.comment.begin.eml"
+				}
+			}
 		}
-	},
-	"scopeName": "@Application"
+	}
 }
