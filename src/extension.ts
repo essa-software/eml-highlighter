@@ -173,16 +173,16 @@ export function activate(context: vscode.ExtensionContext) {
 				return undefined;
 			}
 
-			const BasicLayout = new vscode.CompletionItem('BasicLayout', vscode.CompletionItemKind.Class);
+			const BasicLayout = new vscode.CompletionItem('@BasicLayout', vscode.CompletionItemKind.Class);
 			BasicLayout.documentation = new vscode.MarkdownString('');
 
-			const BoxLayout = new vscode.CompletionItem('BoxLayout', vscode.CompletionItemKind.Class);
+			const BoxLayout = new vscode.CompletionItem('@BoxLayout', vscode.CompletionItemKind.Class);
 			BoxLayout.documentation = new vscode.MarkdownString('');
 
-			const HorizontalBoxLayout = new vscode.CompletionItem('HorizontalBoxLayout', vscode.CompletionItemKind.Class);
+			const HorizontalBoxLayout = new vscode.CompletionItem('@HorizontalBoxLayout', vscode.CompletionItemKind.Class);
 			HorizontalBoxLayout.documentation = new vscode.MarkdownString('');
 
-			const VerticalBoxLayout = new vscode.CompletionItem('VerticalBoxLayout', vscode.CompletionItemKind.Class);
+			const VerticalBoxLayout = new vscode.CompletionItem('@VerticalBoxLayout', vscode.CompletionItemKind.Class);
 			VerticalBoxLayout.documentation = new vscode.MarkdownString('');
 
 			return [
