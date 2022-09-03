@@ -1,0 +1,25 @@
+{
+  "name": "eml-highlighter",
+  "displayName": "EML Highlighter",
+  "description": "This extension provides VS Code support for Essa Markup Language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "eml",
+      "aliases": ["EML", "eml"],
+      "extensions": [".eml"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "eml",
+      "scopeName": "@Application",
+      "path": "./syntaxes/eml.tmLanguage.json"
+    }]
+  }
+}
