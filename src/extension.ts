@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			const Application = new vscode.CompletionItem('Application', vscode.CompletionItemKind.Class);
-			Application.documentation = new vscode.MarkdownString('Reprezents a root element of the application. Every ESSA program is supposed to have only one *@Application* node.');
+			Application.documentation = new vscode.MarkdownString('Represents a root element of the application. Every ESSA program is supposed to have only one *@Application* node.');
 
 			const ArrowButton = new vscode.CompletionItem('ArrowButton', vscode.CompletionItemKind.Class);
 			ArrowButton.documentation = new vscode.MarkdownString('Special button type with an arrow towards specified direction on it.');
