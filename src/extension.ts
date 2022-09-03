@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (line.endsWith('{')) {
 				counter++;
 				line = line.substr(0, line.length - 1).trim();
-				let splitted = line.split(' ');
+				const splitted = line.split(' ');
 
 				for (let word of splitted) {
 					if (word.startsWith('@') && counter > 0) {
@@ -27,13 +27,13 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		return null;
-	};
+	}
 
 	const RegisterClasses = vscode.languages.registerCompletionItemProvider('eml', {
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
 			const linePrefix = document.lineAt(position).text.substr(0, position.character - 1).trim();
 
-			let type = get_type(document, position);
+			const type = get_type(document, position);
 
 			if (linePrefix.endsWith('layout:') || (!linePrefix.endsWith('main_widget:') && type != null && type != 'Container')) {
 				return undefined;
@@ -239,7 +239,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const contents = ['gutter', 'label', 'list_even', 'list_odd', 'menu', 'tooltip', 'focused', 'unfocused', 'hovered', 'unhovered', 'normal', 'disabled'];
 
 				let valid = false;
-				for (let c of contents) {
+				for (const c of contents) {
 					if (linePrefix.endsWith(c + '.')) {
 						valid = true;
 
@@ -275,7 +275,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const contents = ['textbox'];
 
 				let valid = false;
-				for (let c of contents) {
+				for (const c of contents) {
 					if (linePrefix.endsWith(c + '.')) {
 						valid = true;
 
@@ -306,7 +306,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const contents = ['selection'];
 
 				let valid = false;
-				for (let c of contents) {
+				for (const c of contents) {
 					if (linePrefix.endsWith(c + '.')) {
 						valid = true;
 
@@ -337,7 +337,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const contents = ['active', 'inactive', 'normal'];
 
 				let valid = false;
-				for (let c of contents) {
+				for (const c of contents) {
 					if (linePrefix.endsWith(c + '.')) {
 						valid = true;
 
@@ -368,7 +368,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const contents = ['image_button', 'text_button', 'tab_button'];
 
 				let valid = false;
-				for (let c of contents) {
+				for (const c of contents) {
 					if (linePrefix.endsWith(c + '.')) {
 						valid = true;
 
@@ -683,20 +683,20 @@ export function activate(context: vscode.ExtensionContext) {
 							'unit'
 						], derives: 'Slider'
 					}
-				]
+				];
 
 				let type = get_type(document, position);
 
 				if (type == null) {
 					return undefined;
 				}
-				let result = new Array();
 
+				const result = [];
 				while (type != null) {
-					for (let c of classes) {
+					for (const c of classes) {
 						if (c.name == type) {
-							for (let m of c.methods) {
-								let method = new vscode.CompletionItem(m + ': ', vscode.CompletionItemKind.Method);
+							for (const m of c.methods) {
+								const method = new vscode.CompletionItem(m + ': ', vscode.CompletionItemKind.Method);
 								result.push(method);
 							}
 
