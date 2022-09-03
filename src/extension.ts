@@ -164,7 +164,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}, '@');
 
-	const RegisterLayoutClasses = vscode.languages.registerCompletionItemProvider('plaintext', {
+	const RegisterLayoutClasses = vscode.languages.registerCompletionItemProvider('eml', {
 
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
 			const linePrefix = document.lineAt(position).text.substr(0, position.character - 1).trim();
@@ -193,8 +193,10 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}, '@');
 
+	// TODO: Use something other instead of INI in theme
+
 	const ColorThemeElements = vscode.languages.registerCompletionItemProvider(
-		'eml',
+		'ini',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -216,7 +218,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const Keywords = vscode.languages.registerCompletionItemProvider(
-		'plaintext',
+		'eml',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -230,7 +232,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const BgFgTextColorTheme = vscode.languages.registerCompletionItemProvider(
-		'eml',
+		'ini',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -266,7 +268,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const TextBoxColorTheme = vscode.languages.registerCompletionItemProvider(
-		'eml',
+		'ini',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -297,7 +299,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const SelectionColorTheme = vscode.languages.registerCompletionItemProvider(
-		'eml',
+		'ini',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -328,7 +330,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const HoverableWidgetColorTheme = vscode.languages.registerCompletionItemProvider(
-		'eml',
+		'ini',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -359,7 +361,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const ButtonColorTheme = vscode.languages.registerCompletionItemProvider(
-		'eml',
+		'ini',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
@@ -392,7 +394,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	const Properties = vscode.languages.registerCompletionItemProvider(
-		'plaintext',
+		'eml',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 				const classes = [
@@ -464,7 +466,6 @@ export function activate(context: vscode.ExtensionContext) {
 							'multiline',
 						], derives: 'ScrollableWidget'
 					},
-
 
 					{ name: 'BasicLayout', methods: [], derives: 'Layout' },
 
