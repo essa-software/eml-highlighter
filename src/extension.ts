@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const provider1 = vscode.languages.registerCompletionItemProvider('plaintext', {
+	const RegisterClasses = vscode.languages.registerCompletionItemProvider('plaintext', {
 
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
 
@@ -131,27 +131,189 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}, '@');
 
-	const provider2 = vscode.languages.registerCompletionItemProvider(
+	const ColorThemeElements = vscode.languages.registerCompletionItemProvider(
 		'plaintext',
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
-				// get all text until the `position` and check if it reads `console.`
-				// and if so then complete if `log`, `warn`, and `error`
+				return [
+					new vscode.CompletionItem('gutter', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('label', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('list_even', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('list_odd', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('menu', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('tooltip', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('textbox', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('selection', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('image_button', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('text_button', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('tab_button', vscode.CompletionItemKind.Variable)
+				];
+			}
+		}
+	);
+
+	const BgFgTextColorTheme = vscode.languages.registerCompletionItemProvider(
+		'plaintext',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
 				const linePrefix = document.lineAt(position).text.substr(0, position.character);
-				if (!linePrefix.endsWith('console.')) {
+
+				const contents = ['gutter', 'label', 'list_even', 'list_odd', 'menu', 'tooltip', 'focused', 'unfocused', 'hovered', 'unhovered', 'normal', 'disabled'];
+
+				let valid = false;
+				for(let c of contents){
+					if(linePrefix.endsWith(c + '.')){
+						valid = true;
+
+						break;
+					}
+				}
+
+				if(!valid){
+					return undefined;
+				}
+
+				if(!valid){
 					return undefined;
 				}
 
 				return [
-					new vscode.CompletionItem('log', vscode.CompletionItemKind.Method),
-					new vscode.CompletionItem('warn', vscode.CompletionItemKind.Method),
-					new vscode.CompletionItem('error', vscode.CompletionItemKind.Method),
+					new vscode.CompletionItem('background', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('foreground', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('text', vscode.CompletionItemKind.Property),
 				];
 			}
 		},
-		'.' // triggered whenever a '.' is being typed
+		'.'
 	);
 
-	context.subscriptions.push(provider1, provider2);
+	const TextBoxColorTheme = vscode.languages.registerCompletionItemProvider(
+		'plaintext',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
+				const linePrefix = document.lineAt(position).text.substr(0, position.character);
+
+				const contents = ['textbox'];
+
+				let valid = false;
+				for(let c of contents){
+					if(linePrefix.endsWith(c + '.')){
+						valid = true;
+
+						break;
+					}
+				}
+
+				if(!valid){
+					return undefined;
+				}
+
+				return [
+					new vscode.CompletionItem('disabled', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('normal', vscode.CompletionItemKind.Property),
+				];
+			}
+		},
+		'.'
+	);
+
+	const SelectionColorTheme = vscode.languages.registerCompletionItemProvider(
+		'plaintext',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
+				const linePrefix = document.lineAt(position).text.substr(0, position.character);
+
+				const contents = ['selection'];
+
+				let valid = false;
+				for(let c of contents){
+					if(linePrefix.endsWith(c + '.')){
+						valid = true;
+
+						break;
+					}
+				}
+
+				if(!valid){
+					return undefined;
+				}
+
+				return [
+					new vscode.CompletionItem('focused', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('unfocused', vscode.CompletionItemKind.Property),
+				];
+			}
+		},
+		'.'
+	);
+
+	const HoverableWidgetColorTheme = vscode.languages.registerCompletionItemProvider(
+		'plaintext',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
+				const linePrefix = document.lineAt(position).text.substr(0, position.character);
+
+				const contents = ['active', 'inactive', 'normal'];
+
+				let valid = false;
+				for(let c of contents){
+					if(linePrefix.endsWith(c + '.')){
+						valid = true;
+
+						break;
+					}
+				}
+
+				if(!valid){
+					return undefined;
+				}
+
+				return [
+					new vscode.CompletionItem('hovered', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('unhovered', vscode.CompletionItemKind.Property),
+				];
+			}
+		},
+		'.'
+	);
+
+	const ButtonColorTheme = vscode.languages.registerCompletionItemProvider(
+		'plaintext',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
+				const linePrefix = document.lineAt(position).text.substr(0, position.character);
+
+				const contents = ['image_button', 'text_button', 'tab_button'];
+
+				let valid = false;
+				for(let c of contents){
+					if(linePrefix.endsWith(c + '.')){
+						valid = true;
+
+						break;
+					}
+				}
+
+				if(!valid){
+					return undefined;
+				}
+
+				return [
+					new vscode.CompletionItem('active', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('inactive', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('normal', vscode.CompletionItemKind.Property),
+					new vscode.CompletionItem('disabled', vscode.CompletionItemKind.Property),
+				];
+			}
+		},
+		'.'
+	);
+
+	context.subscriptions.push(RegisterClasses, ColorThemeElements, BgFgTextColorTheme, TextBoxColorTheme, SelectionColorTheme, HoverableWidgetColorTheme, ButtonColorTheme);
 }
