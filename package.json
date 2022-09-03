@@ -1,7 +1,7 @@
 {
 	"name": "eml-highlighter",
 	"displayName": "VS Code Extension for Essa MarkupLanguage support",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"publisher": "essa-software",
 	"private": true,
 	"license": "MIT",
