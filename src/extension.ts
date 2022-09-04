@@ -3,8 +3,8 @@ import { Classes } from './constants';
 import { inifile } from './ini';
 
 export function activate(context: vscode.ExtensionContext) {
-	// const filetype = 'eml';
-	const filetype = 'plaintext';
+	const filetype = 'eml';
+	// const filetype = 'plaintext';
 
 	function get_type(document: vscode.TextDocument, position: vscode.Position) {
 		let counter = 0;
@@ -70,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const type = get_type(document, position);
 				const method = get_method(document, position);
 
-				if((!linePrefix.includes('@') || linePrefix.includes(':') || type != null) && method != 'widgets'){
+				if ((!linePrefix.includes('@') || linePrefix.includes(':') || type != null) && method != 'widgets') {
 					return undefined;
 				}
 
@@ -106,15 +106,20 @@ export function activate(context: vscode.ExtensionContext) {
 					return undefined;
 				}
 
+				let first = true;
+
 				const result = new Array();
 				while (type != null) {
 					for (const c of classes.Classes) {
 						if (c.name == type) {
 							for (const m of c.methods) {
-								const method = new vscode.CompletionItem(m.name + ': ', vscode.CompletionItemKind.Method);
-								result.push(method);
+								if (m.inherit || first) {
+									const method = new vscode.CompletionItem(m.name + ': ', vscode.CompletionItemKind.Method);
+									result.push(method);
+								}
 							}
 
+							first = false;
 							type = c.derives;
 							break;
 						}
