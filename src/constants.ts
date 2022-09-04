@@ -224,298 +224,298 @@ const Colors = [
 	new vscode.CompletionItem('YellowGreen', vscode.CompletionItemKind.Value)
 ];
 
-export interface Constants{
-	Classes : Array<object>;
+export interface Constants {
+	Classes: Array<object>;
 }
 
-export class Classes implements Constants{
+export class Classes implements Constants {
 	Classes = [
-	{
-		name: 'WidgetTreeRoot', methods: [
-			{ name: 'id', val: undefined },
-		], derives: null
-	},
+		{
+			name: 'WidgetTreeRoot', methods: [
+				{ name: 'id', val: undefined },
+			], derives: null
+		},
 
-	{
-		name: 'Widget', methods: [
-			{ name: 'id', val: undefined },
-			{ name: 'class', val: undefined },
-			{ name: 'visible', val: Boolean },
-			{ name: 'enabled', val: Boolean },
-			{ name: 'tooltip_text', val: undefined },
-			{ name: 'x', val: undefined },
-			{ name: 'y', val: undefined },
-			{ name: 'width', val: undefined },
-			{ name: 'height', val: undefined },
-			{ name: 'background_color', val: Colors }
-		], derives: null
-	},
+		{
+			name: 'Widget', methods: [
+				{ name: 'id', val: undefined },
+				{ name: 'class', val: undefined },
+				{ name: 'visible', val: Boolean },
+				{ name: 'enabled', val: Boolean },
+				{ name: 'tooltip_text', val: undefined },
+				{ name: 'x', val: undefined },
+				{ name: 'y', val: undefined },
+				{ name: 'width', val: undefined },
+				{ name: 'height', val: undefined },
+				{ name: 'background_color', val: Colors }
+			], derives: null
+		},
 
-	{
-		name: 'Container', methods: [
-			{ name: 'layout', val: undefined }
-		], derives: 'Widget'
-	},
+		{
+			name: 'Container', methods: [
+				{ name: 'layout', val: undefined }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'Layout', methods: [
-			{ name: 'padding', val: undefined }
-		], derives: null
-	},
+		{
+			name: 'Layout', methods: [
+				{ name: 'padding', val: undefined }
+			], derives: null
+		},
 
-	{
-		name: 'BoxLayout', methods: [
-			{ name: 'spacing', val: undefined }
-		], derives: 'Layout'
-	},
+		{
+			name: 'BoxLayout', methods: [
+				{ name: 'spacing', val: undefined }
+			], derives: 'Layout'
+		},
 
-	{
-		name: 'Button', methods: [
-			{ name: 'active', val: Boolean },
-			{ name: 'toggleable', val: Boolean }
-		], derives: 'widget'
-	},
+		{
+			name: 'Button', methods: [
+				{ name: 'active', val: Boolean },
+				{ name: 'toggleable', val: Boolean }
+			], derives: 'widget'
+		},
 
-	{
-		name: 'ScrollableWidget', methods: [
-			{ name: 'scroll', val: undefined }
-		], derives: 'Widget'
-	},
+		{
+			name: 'ScrollableWidget', methods: [
+				{ name: 'scroll', val: undefined }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'ToolWindow', methods: [
-			{ name: 'x', val: undefined },
-			{ name: 'y', val: undefined },
-			{ name: 'position', val: undefined },
-			{ name: 'title', val: undefined }
-		], derives: 'WidgetTreeRoot'
-	},
+		{
+			name: 'ToolWindow', methods: [
+				{ name: 'x', val: undefined },
+				{ name: 'y', val: undefined },
+				{ name: 'position', val: undefined },
+				{ name: 'title', val: undefined }
+			], derives: 'WidgetTreeRoot'
+		},
 
-	{
-		name: 'TextEditor', methods: [
-			{ name: 'content', val: undefined },
-			{ name: 'placeholder', val: undefined },
-			{ name: 'multiline', val: undefined }
-		], derives: 'ScrollableWidget'
-	},
+		{
+			name: 'TextEditor', methods: [
+				{ name: 'content', val: undefined },
+				{ name: 'placeholder', val: undefined },
+				{ name: 'multiline', val: undefined }
+			], derives: 'ScrollableWidget'
+		},
 
 
-	{ name: 'BasicLayout', methods: [], derives: 'Layout' },
+		{ name: 'BasicLayout', methods: [], derives: 'Layout' },
 
-	{ name: 'VerticalBoxLayout', methods: [], derives: 'BoxLayout' },
+		{ name: 'VerticalBoxLayout', methods: [], derives: 'BoxLayout' },
 
-	{ name: 'HorizontalBoxLayout', methods: [], derives: 'BoxLayout' },
+		{ name: 'HorizontalBoxLayout', methods: [], derives: 'BoxLayout' },
 
-	{
-		name: 'Application', methods: [
-			{ name: 'theme', val: undefined },
-			{ name: 'main_widget', val: undefined }
-		], derives: 'WidgetTreeRoot'
-	},
+		{
+			name: 'Application', methods: [
+				{ name: 'theme', val: undefined },
+				{ name: 'main_widget', val: undefined }
+			], derives: 'WidgetTreeRoot'
+		},
 
-	{
-		name: 'ArrowButton', methods: [
-			{ name: 'arrow_type', val: ArrowDirection },
-			{ name: 'arrow_size', val: undefined }
-		], derives: 'Button'
-	},
+		{
+			name: 'ArrowButton', methods: [
+				{ name: 'arrow_type', val: ArrowDirection },
+				{ name: 'arrow_size', val: undefined }
+			], derives: 'Button'
+		},
 
-	{
-		name: 'Border', methods: [
-			{ name: 'child', val: undefined }
-		], derives: 'Container'
-	},
+		{
+			name: 'Border', methods: [
+				{ name: 'child', val: undefined }
+			], derives: 'Container'
+		},
 
-	{
-		name: 'CheckBox', methods: [
-			{ name: 'caption', val: undefined },
-			{ name: 'box_style', val: CheckBoxStyle }
-		], derives: 'Button'
-	},
+		{
+			name: 'CheckBox', methods: [
+				{ name: 'caption', val: undefined },
+				{ name: 'box_style', val: CheckBoxStyle }
+			], derives: 'Button'
+		},
 
-	{
-		name: 'ColorPicker', methods: [
-			{ name: 'default_color', val: Colors }
-		], derives: 'Container'
-	},
+		{
+			name: 'ColorPicker', methods: [
+				{ name: 'default_color', val: Colors }
+			], derives: 'Container'
+		},
 
-	{ name: 'Console', methods: [], derives: 'ScrollableWidget' },
+		{ name: 'Console', methods: [], derives: 'ScrollableWidget' },
 
-	{ name: 'ContextMenu', methods: [], derives: 'Widget' },
+		{ name: 'ContextMenu', methods: [], derives: 'Widget' },
 
-	{
-		name: 'DateBox', methods: [
-			{ name: 'foreground_color', val: Colors },
-			{ name: 'text_color', val: Colors }
-		], derives: 'Container'
-	},
+		{
+			name: 'DateBox', methods: [
+				{ name: 'foreground_color', val: Colors },
+				{ name: 'text_color', val: Colors }
+			], derives: 'Container'
+		},
 
-	{
-		name: 'FileExplorer', methods: [
-			{ name: 'type', val: FileExplorerTypes },
-			{ name: 'path', val: undefined }
-		], derives: 'ToolWindow'
-	},
+		{
+			name: 'FileExplorer', methods: [
+				{ name: 'type', val: FileExplorerTypes },
+				{ name: 'path', val: undefined }
+			], derives: 'ToolWindow'
+		},
 
-	{
-		name: 'FilePrompt', methods: [
-			{ name: 'ext', val: undefined }
-		], derives: 'ToolWindow'
-	},
+		{
+			name: 'FilePrompt', methods: [
+				{ name: 'ext', val: undefined }
+			], derives: 'ToolWindow'
+		},
 
-	{ name: 'Frame', methods: [], derives: 'Container' },
+		{ name: 'Frame', methods: [], derives: 'Container' },
 
-	{
-		name: 'Grid', methods: [
-			{ name: 'spacing', val: undefined },
-			{ name: 'line_height', val: undefined },
-			{ name: 'width', val: undefined },
-			{ name: 'height', val: undefined }
-		], derives: 'Container'
-	},
+		{
+			name: 'Grid', methods: [
+				{ name: 'spacing', val: undefined },
+				{ name: 'line_height', val: undefined },
+				{ name: 'width', val: undefined },
+				{ name: 'height', val: undefined }
+			], derives: 'Container'
+		},
 
-	{
-		name: 'ImageButton', methods: [
-			{ name: 'img', val: undefined }
-		], derives: 'Button'
-	},
+		{
+			name: 'ImageButton', methods: [
+				{ name: 'img', val: undefined }
+			], derives: 'Button'
+		},
 
-	{
-		name: 'Image', methods: [
-			{ name: 'path', val: undefined }
-		], derives: 'Widget'
-	},
+		{
+			name: 'Image', methods: [
+				{ name: 'path', val: undefined }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'ListBox', methods: [
-			{ name: 'sorted', val: Boolean },
-			{ name: 'allow_multichoose', val: Boolean },
-			{ name: 'line_height', val: undefined },
-			{ name: 'index', val: undefined },
-			{ name: 'items', val: undefined }
-		], derives: 'Container'
-	},
+		{
+			name: 'ListBox', methods: [
+				{ name: 'sorted', val: Boolean },
+				{ name: 'allow_multichoose', val: Boolean },
+				{ name: 'line_height', val: undefined },
+				{ name: 'index', val: undefined },
+				{ name: 'items', val: undefined }
+			], derives: 'Container'
+		},
 
-	{
-		name: 'MessageBox', methods: [
-			{ name: 'buttons', val: MsgBoxButtons }
-		], derives: 'ToolWindow'
-	},
+		{
+			name: 'MessageBox', methods: [
+				{ name: 'buttons', val: MsgBoxButtons }
+			], derives: 'ToolWindow'
+		},
 
-	{
-		name: 'ProgressBar', methods: [
-			{ name: 'content', val: undefined },
-			{ name: 'value', val: undefined },
-			{ name: 'scrollbar_type', val: ProgreessBarTypes },
-			{ name: 'min', val: undefined },
-			{ name: 'max', val: undefined },
-			{ name: 'step', val: undefined },
-			{ name: 'color', val: Colors }
-		], derives: 'Widget'
-	},
+		{
+			name: 'ProgressBar', methods: [
+				{ name: 'content', val: undefined },
+				{ name: 'value', val: undefined },
+				{ name: 'scrollbar_type', val: ProgreessBarTypes },
+				{ name: 'min', val: undefined },
+				{ name: 'max', val: undefined },
+				{ name: 'step', val: undefined },
+				{ name: 'color', val: Colors }
+			], derives: 'Widget'
+		},
 
-	{ name: 'Propmpt', methods: [], derives: 'ToolWindow' },
+		{ name: 'Propmpt', methods: [], derives: 'ToolWindow' },
 
-	{
-		name: 'RadioButton', methods: [
-			{ name: 'caption', val: undefined }
-		], derives: 'Button'
-	},
+		{
+			name: 'RadioButton', methods: [
+				{ name: 'caption', val: undefined }
+			], derives: 'Button'
+		},
 
-	{
-		name: 'RadioGroup', methods: [
-			{ name: 'index', val: undefined },
-			{ name: 'items', val: undefined }
-		], derives: 'Container'
-	},
+		{
+			name: 'RadioGroup', methods: [
+				{ name: 'index', val: undefined },
+				{ name: 'items', val: undefined }
+			], derives: 'Container'
+		},
 
-	{
-		name: 'SelectWidget', methods: [
-			{ name: 'index', val: undefined },
-			{ name: 'items', val: undefined }
-		], derives: 'Widget'
-	},
+		{
+			name: 'SelectWidget', methods: [
+				{ name: 'index', val: undefined },
+				{ name: 'items', val: undefined }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'Menu', methods: [
-			{ name: 'index', val: undefined },
-			{ name: 'items', val: undefined }
-		], derives: null
-	},
+		{
+			name: 'Menu', methods: [
+				{ name: 'index', val: undefined },
+				{ name: 'items', val: undefined }
+			], derives: null
+		},
 
-	{
-		name: 'Slider', methods: [
-			{ name: 'value', val: undefined },
-			{ name: 'mode', val: SliderMode },
-			{ name: 'exponent', val: undefined },
-			{ name: 'wraparound', val: Boolean },
-			{ name: 'step', val: undefined },
-			{ name: 'min', val: undefined },
-			{ name: 'max', val: undefined },
-			{ name: 'caption', val: undefined },
-			{ name: 'text_position', val: TextPosition }
-		], derives: 'Widget'
-	},
+		{
+			name: 'Slider', methods: [
+				{ name: 'value', val: undefined },
+				{ name: 'mode', val: SliderMode },
+				{ name: 'exponent', val: undefined },
+				{ name: 'wraparound', val: Boolean },
+				{ name: 'step', val: undefined },
+				{ name: 'min', val: undefined },
+				{ name: 'max', val: undefined },
+				{ name: 'caption', val: undefined },
+				{ name: 'text_position', val: TextPosition }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'StateTextButton', methods: [
-			{ name: 'font_size', val: undefined },
-			{ name: 'foreground_color', val: Colors },
-			{ name: 'text_color', val: Colors },
-			{ name: 'index', val: undefined },
-			{ name: 'items', val: undefined }
-		], derives: 'Widget'
-	},
+		{
+			name: 'StateTextButton', methods: [
+				{ name: 'font_size', val: undefined },
+				{ name: 'foreground_color', val: Colors },
+				{ name: 'text_color', val: Colors },
+				{ name: 'index', val: undefined },
+				{ name: 'items', val: undefined }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'TabWidget', methods: [
-			{ name: 'index', val: undefined },
-			{ name: 'items', val: undefined }
-		], derives: 'Container'
-	},
+		{
+			name: 'TabWidget', methods: [
+				{ name: 'index', val: undefined },
+				{ name: 'items', val: undefined }
+			], derives: 'Container'
+		},
 
-	{
-		name: 'TextBox', methods: [
-			{ name: 'limit', val: undefined },
-			{ name: 'data_type', val: TextBoxMode },
-			{ name: 'min', val: undefined },
-			{ name: 'max', val: undefined },
-		], derives: 'TextEditor'
-	},
+		{
+			name: 'TextBox', methods: [
+				{ name: 'limit', val: undefined },
+				{ name: 'data_type', val: TextBoxMode },
+				{ name: 'min', val: undefined },
+				{ name: 'max', val: undefined },
+			], derives: 'TextEditor'
+		},
 
-	{
-		name: 'TextButton', methods: [
-			{ name: 'caption', val: undefined },
-			{ name: 'img', val: undefined },
-			{ name: 'font_size', val: undefined },
-			{ name: 'text_align', val: TextAlignment }
-		], derives: 'Button'
-	},
+		{
+			name: 'TextButton', methods: [
+				{ name: 'caption', val: undefined },
+				{ name: 'img', val: undefined },
+				{ name: 'font_size', val: undefined },
+				{ name: 'text_align', val: TextAlignment }
+			], derives: 'Button'
+		},
 
-	{
-		name: 'TextField', methods: [
-			{ name: 'content', val: undefined },
-			{ name: 'font_size', val: undefined },
-			{ name: 'text_align', val: TextAlignment },
-			{ name: 'padding', val: undefined }
-		], derives: 'Widget'
-	},
+		{
+			name: 'TextField', methods: [
+				{ name: 'content', val: undefined },
+				{ name: 'font_size', val: undefined },
+				{ name: 'text_align', val: TextAlignment },
+				{ name: 'padding', val: undefined }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'UnitSlider', methods: [
-			{ name: 'value', val: undefined },
-			{ name: 'step', val: undefined },
-			{ name: 'min', val: undefined },
-			{ name: 'max', val: undefined },
-			{ name: 'caption', val: undefined },
-			{ name: 'unit', val: Units }
-		], derives: 'Widget'
-	},
+		{
+			name: 'UnitSlider', methods: [
+				{ name: 'value', val: undefined },
+				{ name: 'step', val: undefined },
+				{ name: 'min', val: undefined },
+				{ name: 'max', val: undefined },
+				{ name: 'caption', val: undefined },
+				{ name: 'unit', val: Units }
+			], derives: 'Widget'
+		},
 
-	{
-		name: 'ValueSlider', methods: [
-			{ name: 'unit', val: undefined }
-		], derives: 'Slider'
-	}
-];
+		{
+			name: 'ValueSlider', methods: [
+				{ name: 'unit', val: undefined }
+			], derives: 'Slider'
+		}
+	];
 }

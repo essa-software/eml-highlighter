@@ -1,14 +1,39 @@
 import * as vscode from 'vscode';
 
-export interface ini{
-	BgFgTextColorTheme : vscode.Disposable;
-	TextBoxColorTheme : vscode.Disposable;
-	SelectionColorTheme : vscode.Disposable;
-	HoverableWidgetColorTheme : vscode.Disposable;
-	ButtonColorTheme : vscode.Disposable;
+export interface ini {
+	ColorThemeElements: vscode.Disposable;
+	BgFgTextColorTheme: vscode.Disposable;
+	TextBoxColorTheme: vscode.Disposable;
+	SelectionColorTheme: vscode.Disposable;
+	HoverableWidgetColorTheme: vscode.Disposable;
+	ButtonColorTheme: vscode.Disposable;
 }
 
-export class inifile implements ini{
+export class inifile implements ini {
+	// TODO: Use something other instead of INI in theme
+
+	ColorThemeElements = vscode.languages.registerCompletionItemProvider(
+		'ini',
+		{
+			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+
+				return [
+					new vscode.CompletionItem('gutter', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('label', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('list_even', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('list_odd', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('menu', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('tooltip', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('textbox', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('selection', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('image_button', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('text_button', vscode.CompletionItemKind.Variable),
+					new vscode.CompletionItem('tab_button', vscode.CompletionItemKind.Variable)
+				];
+			}
+		}
+	);
+
 	BgFgTextColorTheme = vscode.languages.registerCompletionItemProvider(
 		'ini',
 		{
