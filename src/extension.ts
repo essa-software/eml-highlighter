@@ -3,8 +3,8 @@ import { Classes } from './constants';
 import { inifile } from './ini';
 
 export function activate(context: vscode.ExtensionContext) {
-	const filetype = 'eml';
-	// const filetype = 'plaintext';
+	// const filetype = 'eml';
+	const filetype = 'plaintext';
 
 	function get_type(document: vscode.TextDocument, position: vscode.Position) {
 		let counter = 0;
@@ -37,11 +37,11 @@ export function activate(context: vscode.ExtensionContext) {
 		filetype,
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-				const linePrefix = document.lineAt(position).text.substr(0, position.character - 1).trim();
+				const linePrefix = document.lineAt(position).text.substr(0, position.character).trim();
 
 				const type = get_type(document, position);
 
-				if (linePrefix.endsWith('layout:') || (!linePrefix.endsWith('main_widget:') && !linePrefix.endsWith('child:') && type != null && type != 'Container')) {
+				if (linePrefix.endsWith('layout:') || !linePrefix.includes('@') || (!linePrefix.endsWith('main_widget:') && !linePrefix.endsWith('child:') && type != null && type != 'Container')) {
 					return undefined;
 				}
 
@@ -177,22 +177,22 @@ export function activate(context: vscode.ExtensionContext) {
 		{
 
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-				const linePrefix = document.lineAt(position).text.substr(0, position.character - 1).trim();
+				const linePrefix = document.lineAt(position).text.substr(0, position.character).trim();
 
 				if (!linePrefix.endsWith('layout:')) {
 					return undefined;
 				}
 
-				const BasicLayout = new vscode.CompletionItem('@BasicLayout', vscode.CompletionItemKind.Class);
+				const BasicLayout = new vscode.CompletionItem('BasicLayout', vscode.CompletionItemKind.Class);
 				BasicLayout.documentation = new vscode.MarkdownString('');
 
-				const BoxLayout = new vscode.CompletionItem('@BoxLayout', vscode.CompletionItemKind.Class);
+				const BoxLayout = new vscode.CompletionItem('BoxLayout', vscode.CompletionItemKind.Class);
 				BoxLayout.documentation = new vscode.MarkdownString('');
 
-				const HorizontalBoxLayout = new vscode.CompletionItem('@HorizontalBoxLayout', vscode.CompletionItemKind.Class);
+				const HorizontalBoxLayout = new vscode.CompletionItem('HorizontalBoxLayout', vscode.CompletionItemKind.Class);
 				HorizontalBoxLayout.documentation = new vscode.MarkdownString('');
 
-				const VerticalBoxLayout = new vscode.CompletionItem('@VerticalBoxLayout', vscode.CompletionItemKind.Class);
+				const VerticalBoxLayout = new vscode.CompletionItem('VerticalBoxLayout', vscode.CompletionItemKind.Class);
 				VerticalBoxLayout.documentation = new vscode.MarkdownString('');
 
 				return [
@@ -225,10 +225,11 @@ export function activate(context: vscode.ExtensionContext) {
 		filetype,
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+				const linePrefix = document.lineAt(position).text.substr(0, position.character - 1).trim();
 
 				let type = get_type(document, position);
 
-				if (type == null) {
+				if (type == null || linePrefix.endsWith(':')) {
 					return undefined;
 				}
 
@@ -257,6 +258,7 @@ export function activate(context: vscode.ExtensionContext) {
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 				let linePrefix = document.lineAt(position).text.substr(0, position.character - 1).trim();
+				linePrefix = linePrefix.substr(0, linePrefix.length - 1);
 
 				let type = get_type(document, position);
 
