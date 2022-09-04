@@ -379,291 +379,290 @@ export class Classes implements Constants {
 	Classes = [
 		{
 			name: 'WidgetTreeRoot', methods: [
-				{ name: 'id', val: undefined, inherit: true },
+				{ name: 'id', val: undefined, inherit: true, desc: 'Specifies a window identification string. IDs ahve to be unique for an entire app.' },
 			], derives: null
 		},
 
 		{
 			name: 'Widget', methods: [
-				{ name: 'id', val: undefined, inherit: true },
-				{ name: 'class', val: undefined, inherit: true },
-				{ name: 'visible', val: Boolean, inherit: true },
-				{ name: 'enabled', val: Boolean, inherit: true },
-				{ name: 'tooltip_text', val: undefined, inherit: true },
-				{ name: 'x', val: undefined, inherit: true },
-				{ name: 'y', val: undefined, inherit: true },
-				{ name: 'width', val: undefined, inherit: true },
-				{ name: 'height', val: undefined, inherit: true },
-				{ name: 'background_color', val: Colors, inherit: true }
+				{ name: 'id', val: undefined, inherit: true, desc: 'Specifies a widget identification string. IDs ahve to be unique for an entire app.' },
+				{ name: 'class', val: undefined, inherit: true, desc: 'Specifies a widget class id string.' },
+				{ name: 'visible', val: Boolean, inherit: true, desc: 'Specifies a widget visibility.' },
+				{ name: 'enabled', val: Boolean, inherit: true, desc: 'Specifies if widget is enabled.' },
+				{ name: 'tooltip_text', val: undefined, inherit: true, desc: 'Specifies a widget tooltip content. Tooltips are shown when a cursor hovers widget.' },
+				{ name: 'left', val: undefined, inherit: true, desc: 'Specifies a widget x position.' },
+				{ name: 'top', val: undefined, inherit: true, desc: 'Specifies a widget y position.' },
+				{ name: 'width', val: undefined, inherit: true, desc: 'Specifies a widget x size.' },
+				{ name: 'height', val: undefined, inherit: true, desc: 'Specifies a widget y size.' },
+				{ name: 'background_color', val: Colors, inherit: true, desc: 'Specifies a color displayed in widget\'s background' }
 			], derives: null
 		},
 
 		{
 			name: 'Container', methods: [
-				{ name: 'layout', val: this.LayoutIds(), inherit: false },
-				{ name: 'widgets', val: undefined, inherit: false }
+				{ name: 'layout', val: this.LayoutIds(), inherit: false, desc: 'Specifies a container\'s layout. Layout describes way widgets are positioned inside the container.' },
+				{ name: 'widgets', val: undefined, inherit: false, desc: 'Specified a list of widgets inside the container' }
 			], derives: 'Widget'
 		},
 
 		{
 			name: 'Layout', methods: [
-				{ name: 'padding', val: undefined, inherit: true }
+				{ name: 'padding', val: undefined, inherit: true, desc: 'Specifies elements padding (inner margins)' }
 			], derives: null
 		},
 
 		{
 			name: 'BoxLayout', methods: [
-				{ name: 'spacing', val: undefined, inherit: true }
+				{ name: 'spacing', val: undefined, inherit: true, desc: 'Specifies elements spacing (outer margins)' }
 			], derives: 'Layout'
 		},
 
 		{
 			name: 'Button', methods: [
-				{ name: 'active', val: Boolean, inherit: true },
-				{ name: 'toggleable', val: Boolean, inherit: true }
+				{ name: 'active', val: Boolean, inherit: true, desc: 'Specifies if button is active (toggled)' },
+				{ name: 'toggleable', val: Boolean, inherit: true, desc: 'Specifies if button can be toggled.' }
 			], derives: 'widget'
 		},
 
 		{
 			name: 'ScrollableWidget', methods: [
-				{ name: 'scroll', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+				{ name: 'scroll', val: undefined, inherit: true, desc: 'Sets scroll position.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies scoll items.' }
 			], derives: 'Widget'
 		},
 
 		{
 			name: 'ToolWindow', methods: [
-				{ name: 'x', val: undefined, inherit: true },
-				{ name: 'y', val: undefined, inherit: true },
-				{ name: 'position', val: undefined, inherit: true },
-				{ name: 'title', val: undefined, inherit: true }
+				{ name: 'left', val: undefined, inherit: true, desc: 'Specifies a window x position.' },
+				{ name: 'top', val: undefined, inherit: true, desc: 'Specifies a window y position.' },
+				{ name: 'width', val: undefined, inherit: true, desc: 'Specifies a window x size.' },
+				{ name: 'height', val: undefined, inherit: true, desc: 'Specifies a window y size.' },
+				{ name: 'title', val: undefined, inherit: true, desc: 'Specifies a window caption displayed on top.' }
 			], derives: 'WidgetTreeRoot'
 		},
 
 		{
 			name: 'TextEditor', methods: [
-				{ name: 'content', val: undefined, inherit: true },
-				{ name: 'placeholder', val: undefined, inherit: true },
-				{ name: 'multiline', val: Boolean, inherit: true }
+				{ name: 'content', val: undefined, inherit: true, desc: 'Specifies an editor\'s content' },
+				{ name: 'placeholder', val: undefined, inherit: true, desc: 'Specifies an editor\'s placeholder (text displayed when no text is written' },
+				{ name: 'multiline', val: Boolean, inherit: true, desc: 'Specifies if editor can handle multiline typing.' }
 			], derives: 'ScrollableWidget'
 		},
 
+		{
+			name: 'Slider', methods: [
+				{ name: 'value', val: undefined, inherit: true, desc: 'Specifies a slider value bar position.' },
+				{ name: 'mode', val: SliderMode, inherit: true, desc: 'Specifies a slider mode (exponential or linear)' },
+				{ name: 'exponent', val: undefined, inherit: true, desc: 'Specifies a slider exponent.' },
+				{ name: 'wraparound', val: Boolean, inherit: true, desc: 'Specifies if slider\'s value bar can wrap around the slider.' },
+				{ name: 'step', val: undefined, inherit: true, desc: 'Specifies slider\'s step.' },
+				{ name: 'min', val: undefined, inherit: true, desc: 'Specifies minimum value (default is 0).' },
+				{ name: 'max', val: undefined, inherit: true, desc: 'Specifies maximum value (default is 100).' },
+				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies slider\'s caption text.' },
+				{ name: 'text_position', val: TextPosition, inherit: true, desc: 'Specifies slider\'s caption position.' }
+			], derives: 'Widget'
+		},
 
-		{ name: 'BasicLayout', methods: [], derives: 'Layout', inherit: true },
 
-		{ name: 'VerticalBoxLayout', methods: [], derives: 'BoxLayout', inherit: true },
+		{ name: 'BasicLayout', methods: [], derives: 'Layout' },
 
-		{ name: 'HorizontalBoxLayout', methods: [], derives: 'BoxLayout', inherit: true },
+		{ name: 'VerticalBoxLayout', methods: [], derives: 'BoxLayout' },
+
+		{ name: 'HorizontalBoxLayout', methods: [], derives: 'BoxLayout' },
 
 		{
 			name: 'Application', methods: [
-				{ name: 'theme', val: undefined, inherit: true },
-				{ name: 'main_widget', val: this.ClassIds() }
+				{ name: 'theme', val: undefined, inherit: true, desc: 'Specifies application\'s theme ini file path.' },
+				{ name: 'main_widget', val: this.ClassIds(), desc: 'Adds a main widget to the window.' }
 			], derives: 'WidgetTreeRoot'
 		},
 
 		{
 			name: 'ArrowButton', methods: [
-				{ name: 'arrow_type', val: ArrowDirection, inherit: true },
-				{ name: 'arrow_size', val: undefined, inherit: true }
+				{ name: 'arrow_direction', val: ArrowDirection, inherit: true, desc: 'Specifies an arrow direction.' },
+				{ name: 'arrow_size', val: undefined, inherit: true, desc: 'Specifies an arrow size.' }
 			], derives: 'Button'
 		},
 
 		{
 			name: 'Border', methods: [
-				{ name: 'child', val: this.ClassIds(), inherit: true }
+				{ name: 'child', val: this.ClassIds(), inherit: true, desc: 'Specifies a border\'s cild element. Each border can only have one child element.' }
 			], derives: 'Container'
 		},
 
 		{
 			name: 'CheckBox', methods: [
-				{ name: 'caption', val: undefined, inherit: true },
-				{ name: 'box_style', val: CheckBoxStyle, inherit: true }
+				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies checkbox caption.' },
+				{ name: 'box_style', val: CheckBoxStyle, inherit: true, desc: 'Specifies checkbox box style (cross and mark, default cross)' }
 			], derives: 'Button'
 		},
 
 		{
 			name: 'ColorPicker', methods: [
-				{ name: 'default_color', val: Colors, inherit: true }
+				{ name: 'default_color', val: Colors, inherit: true, desc: 'Specifies default ColorPicker color.' }
 			], derives: 'Container'
 		},
 
-		{ name: 'Console', methods: [], derives: 'ScrollableWidget', inherit: true },
+		{ name: 'Console', methods: [], derives: 'ScrollableWidget' },
 
-		{ name: 'ContextMenu', methods: [], derives: 'Widget', inherit: true },
+		{ name: 'ContextMenu', methods: [], derives: 'Widget' },
 
 		{
 			name: 'DateBox', methods: [
-				{ name: 'foreground_color', val: Colors, inherit: true },
-				{ name: 'text_color', val: Colors, inherit: true }
+				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies DateBox inactive days color.' },
+				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies DateBox text color' }
 			], derives: 'Container'
 		},
 
 		{
 			name: 'FileExplorer', methods: [
-				{ name: 'type', val: FileExplorerTypes, inherit: true },
-				{ name: 'path', val: undefined, inherit: true }
+				{ name: 'type', val: FileExplorerTypes, inherit: true, desc: 'Specifies FileExplorer type (files or folders, default files).' },
+				{ name: 'path', val: undefined, inherit: true, desc: 'Specifies FileExplorer\'s starting directory.' }
 			], derives: 'ToolWindow'
 		},
 
 		{
 			name: 'FilePrompt', methods: [
-				{ name: 'ext', val: undefined, inherit: true }
+				{ name: 'ext', val: undefined, inherit: true, desc: 'Specified extensions needed in FileExplorer' }
 			], derives: 'ToolWindow'
 		},
 
-		{ name: 'Frame', methods: [], derives: 'Container', inherit: true },
+		{ name: 'Frame', methods: [], derives: 'Container' },
 
 		{
 			name: 'Grid', methods: [
-				{ name: 'spacing', val: undefined, inherit: true },
-				{ name: 'line_height', val: undefined, inherit: true },
-				{ name: 'width', val: undefined, inherit: true },
-				{ name: 'height', val: undefined, inherit: true }
+				{ name: 'spacing', val: undefined, inherit: true, desc: 'Specifies spacing between grid cells.' },
+				{ name: 'line_height', val: undefined, inherit: true, desc: 'Specifies grid line height.' },
+				{ name: 'rows', val: undefined, inherit: true, desc: 'Specifies Grid\'s row count.' },
+				{ name: 'cols', val: undefined, inherit: true, desc: 'Specifies Grid\'s column count.' }
 			], derives: 'Container'
 		},
 
 		{
 			name: 'ImageButton', methods: [
-				{ name: 'img', val: undefined, inherit: true }
+				{ name: 'img', val: undefined, inherit: true, desc: 'Specifies image asset.' }
 			], derives: 'Button'
 		},
 
 		{
 			name: 'Image', methods: [
-				{ name: 'path', val: undefined, inherit: true }
+				{ name: 'img', val: undefined, inherit: true, desc: 'Specifies image asset.' }
 			], derives: 'Widget'
 		},
 
 		{
 			name: 'ListBox', methods: [
-				{ name: 'sorted', val: Boolean, inherit: true },
-				{ name: 'allow_multichoose', val: Boolean, inherit: true },
-				{ name: 'line_height', val: undefined, inherit: true },
-				{ name: 'index', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+				{ name: 'sorted', val: Boolean, inherit: true, desc: 'Specifies if listbox should be sorted.' },
+				{ name: 'allow_multichoose', val: Boolean, inherit: true, desc: 'Specifies if user can choose multiple elements.' },
+				{ name: 'line_height', val: undefined, inherit: true, desc: 'Specifies ListBox\'s line height.' },
+				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a ListBox default item index.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a ListBox\'s items' }
 			], derives: 'Container'
 		},
 
 		{
 			name: 'MessageBox', methods: [
-				{ name: 'buttons', val: MsgBoxButtons, inherit: true }
+				{ name: 'buttons', val: MsgBoxButtons, inherit: true, desc: 'Specifies a Message Box buttons.' }
 			], derives: 'ToolWindow'
 		},
 
 		{
 			name: 'ProgressBar', methods: [
-				{ name: 'content', val: undefined, inherit: true },
-				{ name: 'value', val: undefined, inherit: true },
-				{ name: 'scrollbar_type', val: ProgreessBarTypes, inherit: true },
-				{ name: 'min', val: undefined, inherit: true },
-				{ name: 'max', val: undefined, inherit: true },
-				{ name: 'step', val: undefined, inherit: true },
-				{ name: 'color', val: Colors, inherit: true }
+				{ name: 'content', val: undefined, inherit: true, desc: 'Specifies a text displayed on the progress bar' },
+				{ name: 'value', val: undefined, inherit: true, desc: 'Specifies progress bar\'s value' },
+				{ name: 'progressbar_type', val: ProgreessBarTypes, inherit: true, desc: 'Specifies a progress bar value type.' },
+				{ name: 'max', val: undefined, inherit: true, desc: 'Specifies a progressbar maximum value.' },
+				{ name: 'step', val: undefined, inherit: true, desc: 'Specifies a progressbar step.' },
+				{ name: 'color', val: Colors, inherit: true, desc: 'Specifies a finished progress color.' }
 			], derives: 'Widget'
 		},
 
-		{ name: 'Propmpt', methods: [], derives: 'ToolWindow', inherit: true },
+		{ name: 'Propmpt', methods: [], derives: 'ToolWindow' },
 
 		{
 			name: 'RadioButton', methods: [
-				{ name: 'caption', val: undefined, inherit: true }
+				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies a RadioButton\'s displayed text.' }
 			], derives: 'Button'
 		},
 
 		{
 			name: 'RadioGroup', methods: [
-				{ name: 'index', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a RadioGroup\'s default index.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a RadioGroup\'s items.' }
 			], derives: 'Container'
 		},
 
 		{
-			name: 'SelectWidget', methods: [
-				{ name: 'index', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+			name: 'ComboBox', methods: [
+				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a ComboBox default index.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a ComboBox items.' }
 			], derives: 'Widget'
 		},
 
 		{
 			name: 'Menu', methods: [
-				{ name: 'index', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a Menu\'s default index.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a Menu\'s items.' }
 			], derives: null
 		},
 
 		{
-			name: 'Slider', methods: [
-				{ name: 'value', val: undefined, inherit: true },
-				{ name: 'mode', val: SliderMode, inherit: true },
-				{ name: 'exponent', val: undefined, inherit: true },
-				{ name: 'wraparound', val: Boolean, inherit: true },
-				{ name: 'step', val: undefined, inherit: true },
-				{ name: 'min', val: undefined, inherit: true },
-				{ name: 'max', val: undefined, inherit: true },
-				{ name: 'caption', val: undefined, inherit: true },
-				{ name: 'text_position', val: TextPosition, inherit: true }
-			], derives: 'Widget'
-		},
-
-		{
 			name: 'StateTextButton', methods: [
-				{ name: 'font_size', val: undefined, inherit: true },
-				{ name: 'foreground_color', val: Colors, inherit: true },
-				{ name: 'text_color', val: Colors, inherit: true },
-				{ name: 'index', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+				{ name: 'font_size', val: undefined, inherit: true, desc: 'Specifies button font size.' },
+				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies button text alignment.' },
+				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies button foreground color.' },
+				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies button text color.' },
+				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a button\'s default index.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a button\'s items.' }
 			], derives: 'Widget'
 		},
 
 		{
 			name: 'TabWidget', methods: [
-				{ name: 'index', val: undefined, inherit: true },
-				{ name: 'items', val: undefined, inherit: true }
+				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies TabWidget\'s default index.' },
+				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies TabWidget\'s items.' }
 			], derives: 'Container'
 		},
 
 		{
 			name: 'TextBox', methods: [
-				{ name: 'limit', val: undefined, inherit: true },
-				{ name: 'data_type', val: TextBoxMode, inherit: true },
-				{ name: 'min', val: undefined, inherit: true },
-				{ name: 'max', val: undefined, inherit: true },
+				{ name: 'limit', val: undefined, inherit: true, desc: 'Specifies TextBox char limit' },
+				{ name: 'data_type', val: TextBoxMode, inherit: true, desc: 'Specifies TextBox data type (number or string, default number)' },
+				{ name: 'min', val: undefined, inherit: true, desc: 'Specifies TextBox minimum value, valid only for numerical TextBoxes' },
+				{ name: 'max', val: undefined, inherit: true, desc: 'Specifies TextBox maximum value, valid only for numerical TextBoxes' },
 			], derives: 'TextEditor'
 		},
 
 		{
 			name: 'TextButton', methods: [
-				{ name: 'caption', val: undefined, inherit: true },
-				{ name: 'img', val: undefined, inherit: true },
-				{ name: 'font_size', val: undefined, inherit: true },
-				{ name: 'text_align', val: TextAlignment, inherit: true }
+				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies button content.' },
+				{ name: 'font_size', val: undefined, inherit: true, desc: 'Specifies button font size.' },
+				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies button text alignment.' },
+				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies button foreground color.' },
+				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies button text color.' },
 			], derives: 'Button'
 		},
 
 		{
 			name: 'TextField', methods: [
-				{ name: 'content', val: undefined, inherit: true },
-				{ name: 'font_size', val: undefined, inherit: true },
-				{ name: 'text_align', val: TextAlignment, inherit: true },
-				{ name: 'padding', val: undefined, inherit: true }
+				{ name: 'content', val: undefined, inherit: true, desc: 'sPECIFIES TextField\'s content.' },
+				{ name: 'font_size', val: undefined, inherit: true, desc: 'Specifies TextField\'s font size.' },
+				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies TextField\'s text alignment.' },
+				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies TextField\'s foreground color.' },
+				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies TextField\'s text color.' },
+				{ name: 'padding', val: undefined, inherit: true, desc: 'Specifies TextField\'s PADDING' }
 			], derives: 'Widget'
 		},
 
 		{
 			name: 'UnitSlider', methods: [
-				{ name: 'value', val: undefined, inherit: true },
-				{ name: 'step', val: undefined, inherit: true },
-				{ name: 'min', val: undefined, inherit: true },
-				{ name: 'max', val: undefined, inherit: true },
-				{ name: 'caption', val: undefined, inherit: true },
-				{ name: 'unit', val: Units, inherit: true }
-			], derives: 'Widget'
+				{ name: 'unit', val: Units, inherit: true, desc: '' }
+			], derives: 'Slider'
 		},
 
 		{
 			name: 'ValueSlider', methods: [
-				{ name: 'unit', val: undefined, inherit: true }
+				{ name: 'unit', val: undefined, inherit: true, desc: '' }
 			], derives: 'Slider'
 		}
 	];

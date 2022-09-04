@@ -3,8 +3,8 @@ import { Classes } from './constants';
 import { inifile } from './ini';
 
 export function activate(context: vscode.ExtensionContext) {
-	const filetype = 'eml';
-	// const filetype = 'plaintext';
+	// const filetype = 'eml';
+	const filetype = 'plaintext';
 
 	function get_type(document: vscode.TextDocument, position: vscode.Position) {
 		let counter = 0;
@@ -115,6 +115,7 @@ export function activate(context: vscode.ExtensionContext) {
 							for (const m of c.methods) {
 								if (m.inherit || first) {
 									const method = new vscode.CompletionItem(m.name + ': ', vscode.CompletionItemKind.Method);
+									method.documentation = m.desc;
 									result.push(method);
 								}
 							}
