@@ -380,7 +380,7 @@ export class Classes implements Constants {
 		{
 			name: 'WidgetTreeRoot', methods: [
 				{ name: 'id', val: undefined, inherit: true, desc: 'Specifies a window identification string. IDs ahve to be unique for an entire app.' },
-			], derives: null
+			], derives: null, abstract: true
 		},
 
 		{
@@ -395,40 +395,40 @@ export class Classes implements Constants {
 				{ name: 'width', val: undefined, inherit: true, desc: 'Specifies a widget x size.' },
 				{ name: 'height', val: undefined, inherit: true, desc: 'Specifies a widget y size.' },
 				{ name: 'background_color', val: Colors, inherit: true, desc: 'Specifies a color displayed in widget\'s background' }
-			], derives: null
+			], derives: null, abstract: true
 		},
 
 		{
 			name: 'Container', methods: [
 				{ name: 'layout', val: this.LayoutIds(), inherit: false, desc: 'Specifies a container\'s layout. Layout describes way widgets are positioned inside the container.' },
 				{ name: 'widgets', val: undefined, inherit: false, desc: 'Specified a list of widgets inside the container' }
-			], derives: 'Widget'
+			], derives: 'Widget', abstract: false
 		},
 
 		{
 			name: 'Layout', methods: [
 				{ name: 'padding', val: undefined, inherit: true, desc: 'Specifies elements padding (inner margins)' }
-			], derives: null
+			], derives: null, abstract: false
 		},
 
 		{
 			name: 'BoxLayout', methods: [
 				{ name: 'spacing', val: undefined, inherit: true, desc: 'Specifies elements spacing (outer margins)' }
-			], derives: 'Layout'
+			], derives: 'Layout', abstract: false
 		},
 
 		{
 			name: 'Button', methods: [
 				{ name: 'active', val: Boolean, inherit: true, desc: 'Specifies if button is active (toggled)' },
 				{ name: 'toggleable', val: Boolean, inherit: true, desc: 'Specifies if button can be toggled.' }
-			], derives: 'widget'
+			], derives: 'widget', abstract: true
 		},
 
 		{
 			name: 'ScrollableWidget', methods: [
 				{ name: 'scroll', val: undefined, inherit: true, desc: 'Sets scroll position.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies scoll items.' }
-			], derives: 'Widget'
+			], derives: 'Widget', abstract: false
 		},
 
 		{
@@ -438,7 +438,7 @@ export class Classes implements Constants {
 				{ name: 'width', val: undefined, inherit: true, desc: 'Specifies a window x size.' },
 				{ name: 'height', val: undefined, inherit: true, desc: 'Specifies a window y size.' },
 				{ name: 'title', val: undefined, inherit: true, desc: 'Specifies a window caption displayed on top.' }
-			], derives: 'WidgetTreeRoot'
+			], derives: 'WidgetTreeRoot', abstract: false
 		},
 
 		{
@@ -446,7 +446,7 @@ export class Classes implements Constants {
 				{ name: 'content', val: undefined, inherit: true, desc: 'Specifies an editor\'s content' },
 				{ name: 'placeholder', val: undefined, inherit: true, desc: 'Specifies an editor\'s placeholder (text displayed when no text is written' },
 				{ name: 'multiline', val: Boolean, inherit: true, desc: 'Specifies if editor can handle multiline typing.' }
-			], derives: 'ScrollableWidget'
+			], derives: 'ScrollableWidget', abstract: false
 		},
 
 		{
@@ -460,7 +460,16 @@ export class Classes implements Constants {
 				{ name: 'max', val: undefined, inherit: true, desc: 'Specifies maximum value (default is 100).' },
 				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies slider\'s caption text.' },
 				{ name: 'text_position', val: TextPosition, inherit: true, desc: 'Specifies slider\'s caption position.' }
-			], derives: 'Widget'
+			], derives: 'Widget', abstract: false
+		},
+
+		{
+			name: 'Text', methods: [
+				{ name: 'font_size', val: undefined, inherit: true, desc: 'Specifies widget\'s font size.' },
+				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies widget\'s text alignment.' },
+				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies widget\'s foreground color.' },
+				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies widget\'s text color.' },
+			], derives: 'widget', abstract: true
 		},
 
 
@@ -474,33 +483,33 @@ export class Classes implements Constants {
 			name: 'Application', methods: [
 				{ name: 'theme', val: undefined, inherit: true, desc: 'Specifies application\'s theme ini file path.' },
 				{ name: 'main_widget', val: this.ClassIds(), desc: 'Adds a main widget to the window.' }
-			], derives: 'WidgetTreeRoot'
+			], derives: 'WidgetTreeRoot', abstract: false
 		},
 
 		{
 			name: 'ArrowButton', methods: [
 				{ name: 'arrow_direction', val: ArrowDirection, inherit: true, desc: 'Specifies an arrow direction.' },
 				{ name: 'arrow_size', val: undefined, inherit: true, desc: 'Specifies an arrow size.' }
-			], derives: 'Button'
+			], derives: 'Button', abstract: false
 		},
 
 		{
 			name: 'Border', methods: [
 				{ name: 'child', val: this.ClassIds(), inherit: true, desc: 'Specifies a border\'s cild element. Each border can only have one child element.' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{
 			name: 'CheckBox', methods: [
 				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies checkbox caption.' },
 				{ name: 'box_style', val: CheckBoxStyle, inherit: true, desc: 'Specifies checkbox box style (cross and mark, default cross)' }
-			], derives: 'Button'
+			], derives: 'Button', abstract: false
 		},
 
 		{
 			name: 'ColorPicker', methods: [
 				{ name: 'default_color', val: Colors, inherit: true, desc: 'Specifies default ColorPicker color.' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{ name: 'Console', methods: [], derives: 'ScrollableWidget' },
@@ -511,20 +520,20 @@ export class Classes implements Constants {
 			name: 'DateBox', methods: [
 				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies DateBox inactive days color.' },
 				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies DateBox text color' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{
 			name: 'FileExplorer', methods: [
 				{ name: 'type', val: FileExplorerTypes, inherit: true, desc: 'Specifies FileExplorer type (files or folders, default files).' },
 				{ name: 'path', val: undefined, inherit: true, desc: 'Specifies FileExplorer\'s starting directory.' }
-			], derives: 'ToolWindow'
+			], derives: 'ToolWindow', abstract: false
 		},
 
 		{
 			name: 'FilePrompt', methods: [
 				{ name: 'ext', val: undefined, inherit: true, desc: 'Specified extensions needed in FileExplorer' }
-			], derives: 'ToolWindow'
+			], derives: 'ToolWindow', abstract: false
 		},
 
 		{ name: 'Frame', methods: [], derives: 'Container' },
@@ -535,19 +544,19 @@ export class Classes implements Constants {
 				{ name: 'line_height', val: undefined, inherit: true, desc: 'Specifies grid line height.' },
 				{ name: 'rows', val: undefined, inherit: true, desc: 'Specifies Grid\'s row count.' },
 				{ name: 'cols', val: undefined, inherit: true, desc: 'Specifies Grid\'s column count.' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{
 			name: 'ImageButton', methods: [
 				{ name: 'img', val: undefined, inherit: true, desc: 'Specifies image asset.' }
-			], derives: 'Button'
+			], derives: 'Button', abstract: false
 		},
 
 		{
 			name: 'Image', methods: [
 				{ name: 'img', val: undefined, inherit: true, desc: 'Specifies image asset.' }
-			], derives: 'Widget'
+			], derives: 'Widget', abstract: false
 		},
 
 		{
@@ -557,13 +566,13 @@ export class Classes implements Constants {
 				{ name: 'line_height', val: undefined, inherit: true, desc: 'Specifies ListBox\'s line height.' },
 				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a ListBox default item index.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a ListBox\'s items' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{
 			name: 'MessageBox', methods: [
 				{ name: 'buttons', val: MsgBoxButtons, inherit: true, desc: 'Specifies a Message Box buttons.' }
-			], derives: 'ToolWindow'
+			], derives: 'ToolWindow', abstract: false
 		},
 
 		{
@@ -574,7 +583,7 @@ export class Classes implements Constants {
 				{ name: 'max', val: undefined, inherit: true, desc: 'Specifies a progressbar maximum value.' },
 				{ name: 'step', val: undefined, inherit: true, desc: 'Specifies a progressbar step.' },
 				{ name: 'color', val: Colors, inherit: true, desc: 'Specifies a finished progress color.' }
-			], derives: 'Widget'
+			], derives: 'Widget', abstract: false
 		},
 
 		{ name: 'Propmpt', methods: [], derives: 'ToolWindow' },
@@ -582,46 +591,42 @@ export class Classes implements Constants {
 		{
 			name: 'RadioButton', methods: [
 				{ name: 'caption', val: undefined, inherit: true, desc: 'Specifies a RadioButton\'s displayed text.' }
-			], derives: 'Button'
+			], derives: 'Button', abstract: false
 		},
 
 		{
 			name: 'RadioGroup', methods: [
 				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a RadioGroup\'s default index.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a RadioGroup\'s items.' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{
 			name: 'ComboBox', methods: [
 				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a ComboBox default index.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a ComboBox items.' }
-			], derives: 'Widget'
+			], derives: 'Widget', abstract: false
 		},
 
 		{
 			name: 'Menu', methods: [
 				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a Menu\'s default index.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a Menu\'s items.' }
-			], derives: null
+			], derives: null, abstract: false
 		},
 
 		{
 			name: 'StateTextButton', methods: [
-				{ name: 'font_size', val: undefined, inherit: true, desc: 'Specifies button font size.' },
-				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies button text alignment.' },
-				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies button foreground color.' },
-				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies button text color.' },
 				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies a button\'s default index.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies a button\'s items.' }
-			], derives: 'Widget'
+			], derives: 'Text', abstract: false
 		},
 
 		{
 			name: 'TabWidget', methods: [
 				{ name: 'index', val: undefined, inherit: true, desc: 'Specifies TabWidget\'s default index.' },
 				{ name: 'items', val: undefined, inherit: true, desc: 'Specifies TabWidget\'s items.' }
-			], derives: 'Container'
+			], derives: 'Container', abstract: false
 		},
 
 		{
@@ -630,7 +635,7 @@ export class Classes implements Constants {
 				{ name: 'data_type', val: TextBoxMode, inherit: true, desc: 'Specifies TextBox data type (number or string, default number)' },
 				{ name: 'min', val: undefined, inherit: true, desc: 'Specifies TextBox minimum value, valid only for numerical TextBoxes' },
 				{ name: 'max', val: undefined, inherit: true, desc: 'Specifies TextBox maximum value, valid only for numerical TextBoxes' },
-			], derives: 'TextEditor'
+			], derives: 'TextEditor', abstract: false
 		},
 
 		{
@@ -640,24 +645,20 @@ export class Classes implements Constants {
 				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies button text alignment.' },
 				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies button foreground color.' },
 				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies button text color.' },
-			], derives: 'Button'
+			], derives: 'Button', abstract: false
 		},
 
 		{
 			name: 'TextField', methods: [
 				{ name: 'content', val: undefined, inherit: true, desc: 'sPECIFIES TextField\'s content.' },
-				{ name: 'font_size', val: undefined, inherit: true, desc: 'Specifies TextField\'s font size.' },
-				{ name: 'text_align', val: undefined, inherit: true, desc: 'Specifies TextField\'s text alignment.' },
-				{ name: 'foreground_color', val: Colors, inherit: true, desc: 'Specifies TextField\'s foreground color.' },
-				{ name: 'text_color', val: Colors, inherit: true, desc: 'Specifies TextField\'s text color.' },
-				{ name: 'padding', val: undefined, inherit: true, desc: 'Specifies TextField\'s PADDING' }
-			], derives: 'Widget'
+				{ name: 'padding', val: undefined, inherit: true, desc: 'Specifies TextField\'s padding' }
+			], derives: 'Text', abstract: false
 		},
 
 		{
 			name: 'UnitSlider', methods: [
 				{ name: 'unit', val: Units, inherit: true, desc: '' }
-			], derives: 'Slider'
+			], derives: 'Slider', abstract: false
 		},
 
 		{

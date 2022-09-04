@@ -112,6 +112,10 @@ export function activate(context: vscode.ExtensionContext) {
 				while (type != null) {
 					for (const c of classes.Classes) {
 						if (c.name == type) {
+							if(c.abstract && first){
+								return undefined;
+							}
+
 							for (const m of c.methods) {
 								if (m.inherit || first) {
 									const method = new vscode.CompletionItem(m.name + ': ', vscode.CompletionItemKind.Method);
